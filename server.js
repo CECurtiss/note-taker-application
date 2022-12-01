@@ -25,4 +25,6 @@ app.post("/db/db.json", (req, res) => {
   console.info(`${req.method} request received`);
 });
 
+app.get('api/', (req,res) => res.json(noteData));
+
 app.listen(PORT, () => console.log(`Listening at http://localhost:${PORT}`));
