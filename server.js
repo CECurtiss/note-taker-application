@@ -9,6 +9,7 @@ const app = express();
 
 app.use(express.static('public'));
 app.use(express.json())
+app.use(express.urlencoded( { extended: true }))
 
 app.get("/", (req, res) => {
   res.send("Navigate to notes.html");
@@ -19,7 +20,22 @@ app.get('/notes', (req, res) => {
 });
 
 app.post("/api/notes", (req, res) => {
-  
+    let response;
+
+    if (req.body && req.body.product) {
+        response = {
+            status: 'Success',
+            data: req.body,
+        };
+        res.json(response);
+    } else {
+        res.json( {
+            status: 'error',
+            data: null,
+            message: 'Product required'
+        })
+    }
+    console.log(req.body)
 });
 
 app.get('/api/notes', (req,res) => res.json(noteData));
@@ -29,3 +45,5 @@ app.get("*", (req,res) => {
 })
 
 app.listen(PORT, () => console.log(`Listening at http://localhost:${PORT}`));
+
+1:01:56 express.js day 2
