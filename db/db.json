@@ -4,19 +4,8 @@
     "text": "Test text"
   },
   {
-    "title": "testing notes",
-    "text": "this is a test "
-  },
-  {
-    "note": {
-      "title": "tater tot",
-      "text": "flim flam"
-    },
-    "id": 65895
-  },
-  {
-    "title": "try again",
-    "text": "please work",
-    "id": 21811
+    "title": "test title",
+    "text": "test text",
+    "id": 41438
   }
 ]

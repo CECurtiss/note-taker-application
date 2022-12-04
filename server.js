@@ -25,10 +25,10 @@ app.get("/notes", (req, res) => {
 // route to post notes to db
 app.post("/api/notes", (req, res) => {
   let newNote = {
-    title:   req.body.title,
-    text:    req.body.text,
-    id:     Math.floor(Math.random() * 100000),
-  }
+    title: req.body.title,
+    text: req.body.text,
+    id: Math.floor(Math.random() * 100000),
+  };
   // take existing info from database
   fs.readFile(`./db/db.json`, "utf8", (err, data) => {
     if (err) {
@@ -49,7 +49,7 @@ app.post("/api/notes", (req, res) => {
             console.log(err);
           } else {
             console.log("Note Database Updated!");
-            res.json(newNote)
+            res.json(newNote);
           }
         }
       );
@@ -57,20 +57,43 @@ app.post("/api/notes", (req, res) => {
   });
 });
 
-//route to get existing notes from db.                                                     
+//route to get existing notes from db.
 app.get("/api/notes", (req, res) => {
-    //gets an updated list of notes to add instead of a static list from the original page load
-    fs.readFile(`./db/db.json`, "utf8", (err, data) => {
-        if (err) {
-          console.error(err);
-        } else {
-            const parsedNotes = JSON.parse(data)
-            res.json(parsedNotes)    
-    } 
+  //gets an updated list of notes to add instead of a static list from the original page load
+  fs.readFile(`./db/db.json`, "utf8", (err, data) => {
+    if (err) {
+      console.error(err);
+    } else {
+      const parsedNotes = JSON.parse(data);
+      res.json(parsedNotes);
+    }
+  });
 });
-})
 
-// app.delete('api/notes/:id', (req, res) => )
+// app.delete("api/notes/:id", (req, res) => {
+//   fs.readFile(`./db/db.json`, "utf8", (err, data) => {
+//     if (err) {
+//       console.error(err);
+//     } else {
+//       let parsedNotes = JSON.parse(data);
+//       let deleteNote = req.params.id;
+//       parsedNotes = parsedNotes.filter(({ id }) => id !== deleteNote);
+      
+//     }
+//   });
+//   fs.writeFile(
+//     "./db/db.json",
+//     JSON.stringify(parsedNotes, null, 2),
+//     (err) => {
+//       if (err) {
+//         console.log(err);
+//       } else {
+//         console.log("Note Database Updated!");
+//         res.json(parsedNotes)
+//       }
+//     }
+//   );
+// });
 
 // route to main page
 app.get("*", (req, res) => {
@@ -79,5 +102,3 @@ app.get("*", (req, res) => {
 
 //listens to a specific PORT
 app.listen(PORT, () => console.log(`Listening at http://localhost:${PORT}`));
-
-
