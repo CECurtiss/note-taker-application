@@ -25,9 +25,9 @@ app.get('/notes', (req, res) => {
 app.post("/api/notes", (req, res) => {
     const newNote = req.body;
     
+    console.log(newNote)
 
 
-    
 });
 
 app.get('/api/notes', (req,res) => res.json(noteData));
