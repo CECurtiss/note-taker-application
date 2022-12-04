@@ -46,6 +46,7 @@ app.post("/api/notes", (req, res) => {
             console.log(err);
           } else {
             console.log("Note Database Updated!");
+            res.json(newNote)
           }
         }
       );
@@ -53,16 +54,27 @@ app.post("/api/notes", (req, res) => {
   });
 });
 
-//route to get existing notes from db.
-app.get("/api/notes", (req, res) => res.json(noteData));
+//route to get existing notes from db.                                                     
+app.get("/api/notes", (req, res) => {
+    //gets an updated list of notes to add instead of a static list from the original page load
+    fs.readFile(`./db/db.json`, "utf8", (err, data) => {
+        if (err) {
+          console.error(err);
+        } else {
+            const parsedNotes = JSON.parse(data)
+            res.json(parsedNotes)    
+    } 
+});
+})
 
-// app.delete('/db/db.json', (req, res) => )
+// app.delete('api/notes/:id', (req, res) => )
 
 // route to main page
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "public/index.html"));
 });
 
+//listens to a specific PORT
 app.listen(PORT, () => console.log(`Listening at http://localhost:${PORT}`));
 
 
