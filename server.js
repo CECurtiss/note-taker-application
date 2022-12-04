@@ -41,21 +41,22 @@ app.post("/api/notes", (req, res) => {
       fs.writeFile(
         "./db/db.json",
         JSON.stringify(parsedNotes, null, 2),
-        (err, data) => {
-        if (err) {
+        (err) => {
+          if (err) {
             console.log(err);
-        } else {
-            console.log('Note Database Updated!')
+          } else {
+            console.log("Note Database Updated!");
+          }
         }
-        }
-         
-    );
-    
+      );
     }
   });
 });
 
+//route to get existing notes from db.
 app.get("/api/notes", (req, res) => res.json(noteData));
+
+// app.delete('/db/db.json', (req, res) => )
 
 // route to main page
 app.get("*", (req, res) => {
@@ -64,4 +65,4 @@ app.get("*", (req, res) => {
 
 app.listen(PORT, () => console.log(`Listening at http://localhost:${PORT}`));
 
-// 1:01:56 express.js day 2
+
