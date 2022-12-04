@@ -23,11 +23,25 @@ app.get('/notes', (req, res) => {
 
 // route to post notes to db
 app.post("/api/notes", (req, res) => {
+    let response;
+
+    if (req.body && req.body.product) {
+        response = {
+            status: 'Success',
+            data: req.body,
+        };
+        res.json(response);
+    } else {
+        res.status(400).json( {
+            status: 'error',
+            data: null,
+            message: 'Product required'
+        })
+    }
+    console.log(req.body)
+
     const newNote = req.body;
     
-    console.log(newNote)
-
-
 });
 
 app.get('/api/notes', (req,res) => res.json(noteData));
