@@ -24,8 +24,11 @@ app.get("/notes", (req, res) => {
 
 // route to post notes to db
 app.post("/api/notes", (req, res) => {
-  const newNote = req.body;
-
+  let newNote = {
+    title:   req.body.title,
+    text:    req.body.text,
+    id:     Math.floor(Math.random() * 100000),
+  }
   // take existing info from database
   fs.readFile(`./db/db.json`, "utf8", (err, data) => {
     if (err) {
