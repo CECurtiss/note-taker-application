@@ -12,11 +12,6 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// route to get main page
-// app.get("/", (req, res) => {
-//   res.send("Navigate to notes.html");
-// });
-
 // route to notes page
 app.get("/notes", (req, res) => {
   res.sendFile(path.join(__dirname, "public/notes.html"));
@@ -74,25 +69,24 @@ app.get("/api/notes", (req, res) => {
 //   fs.readFile(`./db/db.json`, "utf8", (err, data) => {
 //     if (err) {
 //       console.error(err);
-//     } else {
+//     }
 //       let parsedNotes = JSON.parse(data);
 //       let deleteNote = req.params.id;
-//       parsedNotes = parsedNotes.filter(({ id }) => id !== deleteNote);
-      
-//     }
-//   });
+//       let removedNotes = parsedNotes.filter(({ id }) => id !== deleteNote);      
+
 //   fs.writeFile(
 //     "./db/db.json",
-//     JSON.stringify(parsedNotes, null, 2),
+//     JSON.stringify(removedNotes, null, 2),
 //     (err) => {
 //       if (err) {
 //         console.log(err);
 //       } else {
 //         console.log("Note Database Updated!");
-//         res.json(parsedNotes)
+//         res.json(removedNotes)
 //       }
 //     }
 //   );
+// });
 // });
 
 // route to main page
