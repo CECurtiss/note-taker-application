@@ -72,7 +72,7 @@ app.delete("/api/notes/:id", function (req, res) {
     return note.id != req.params.id;
   })
   fs.writeFileSync(jsonFilePath, JSON.stringify(noteData));
-  
+
   res.json(noteData)
 });
 
